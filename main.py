@@ -3,6 +3,7 @@ from constants import *
 from player import *
 from asteroid import *
 from asteroidfield import *
+import sys
 
 
 updatable = pygame.sprite.Group()
@@ -34,6 +35,11 @@ def main():
         screen.fill(color="black")
         for obj in updatable:
             obj.update(dt)
+        for asteroid in asteroids:
+            if player.isCollision(asteroid):
+                pygame.time.delay(1500)
+                print("Game over!")
+                sys.exit()
         for obj in drawable:
             obj.draw(screen)
 
